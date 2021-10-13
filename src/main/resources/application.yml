@@ -1,0 +1,8 @@
+server:
+  port: ${PORT:8080}
+  http2:
+    enabled: true
+management:
+  health:
+    diskspace:
+      enabled: false
