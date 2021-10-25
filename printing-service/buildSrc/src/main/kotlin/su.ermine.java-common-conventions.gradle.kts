@@ -5,24 +5,44 @@
 plugins {
     // Apply the java Plugin to add support for Java.
     java
+
+    id ("io.spring.dependency-management")
+    id ("de.jjohannes.extra-java-module-info")
 }
+
+group = "su.ermine"
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
 }
 
-dependencies {
-    constraints {
-        // Define dependency versions as constraints
-        implementation("org.apache.commons:commons-text:1.9")
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.boot:spring-boot-dependencies:2.5.5")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2020.0.4")
+        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:2.0.4")
+        mavenBom("com.google.cloud:libraries-bom:23.1.0")
+        mavenBom("org.testcontainers:testcontainers-bom:1.16.0")
     }
+}
 
-    // Use JUnit Jupiter for testing.
+dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
 }
 
 tasks.test {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+extraJavaModuleInfo {
+    failOnMissingModuleInfo.set(false)
+
+    automaticModule("oauth2-oidc-sdk-9.9.1.jar", "oauth.oidc.sdk")
+    automaticModule("json-smart-2.4.7", "json.smart")
+    automaticModule("google-cloud-storage-2.1.6.jar", "google.cloud.storage")
+    automaticModule("google-cloud-core-2.1.6.jar", "google.cloud.core")
+    automaticModule("spring-cloud-gcp-data-datastore-2.0.4.jar", "spring.cloud.gcp.data.datastore")
 }

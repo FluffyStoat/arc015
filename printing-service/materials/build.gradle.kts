@@ -1,18 +1,8 @@
 plugins {
-    java
-}
-
-version = "unspecified"
-
-repositories {
-    mavenCentral()
+    id ("su.ermine.java-library-conventions")
 }
 
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
-}
-
-tasks.getByName<Test>("test") {
-    useJUnitPlatform()
+    implementation(project(":common"))
+    implementation("com.google.cloud:spring-cloud-gcp-starter-data-datastore")
 }
