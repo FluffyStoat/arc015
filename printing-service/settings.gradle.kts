@@ -1,2 +1,2 @@
-include (":common", ":orders", ":containers", ":materials", ":packages", ":pictures")
+include (":common", ":orders", ":containers", ":materials", ":packages", ":images")
 

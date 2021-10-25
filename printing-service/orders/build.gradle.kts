@@ -8,7 +8,7 @@ dependencies {
     implementation(project(":containers"))
     implementation(project(":materials"))
     implementation(project(":packages"))
-    implementation(project(":pictures"))
+    implementation(project(":images"))
 
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-jooq")
